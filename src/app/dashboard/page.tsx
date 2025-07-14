@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BotMessageSquare, ClipboardList, Trophy } from "lucide-react";
+import { ArrowRight, BotMessageSquare, ClipboardList, Trophy, BookUser, CalendarCheck2, BookCopy } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -49,6 +49,23 @@ export default function DashboardPage() {
 
           <Card className="hover:shadow-lg transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg font-headline">My Career Path</CardTitle>
+              <BookUser className="w-6 h-6 text-accent" />
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                View your generated roadmap, track your progress, and stay focused on your goals.
+              </p>
+            </CardContent>
+            <CardFooter>
+              <Button asChild className="w-full">
+                <Link href="/dashboard/my-career">View My Path <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+            </CardFooter>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-lg font-headline">Interactive Quizzes</CardTitle>
               <ClipboardList className="w-6 h-6 text-accent" />
             </CardHeader>
@@ -63,15 +80,49 @@ export default function DashboardPage() {
               </Button>
             </CardFooter>
           </Card>
+          
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg font-headline">Campus Events</CardTitle>
+              <CalendarCheck2 className="w-6 h-6 text-accent" />
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                Discover workshops, hackathons, and social events happening on campus.
+              </p>
+            </CardContent>
+            <CardFooter>
+              <Button asChild className="w-full">
+                <Link href="/dashboard/events">Browse Events <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+            </CardFooter>
+          </Card>
 
-          <Card className="md:col-span-2 lg:col-span-1 hover:shadow-lg transition-shadow">
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg font-headline">Book Swap</CardTitle>
+              <BookCopy className="w-6 h-6 text-accent" />
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                Find affordable textbooks or list your own to sell to fellow students.
+              </p>
+            </CardContent>
+            <CardFooter>
+              <Button asChild className="w-full">
+                <Link href="/dashboard/book-swap">Swap Books <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+            </CardFooter>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-lg font-headline">Leaderboard</CardTitle>
               <Trophy className="w-6 h-6 text-accent" />
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                See how you stack up against your peers. Climb the ranks and become a top sprout!
+                See how you stack up against your peers. Climb the ranks!
               </p>
             </CardContent>
             <CardFooter>
