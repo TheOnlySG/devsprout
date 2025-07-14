@@ -107,6 +107,7 @@ export const MultiSelect = React.forwardRef<
             {...props}
             onClick={() => setIsPopoverOpen(!isPopoverOpen)}
             className="flex w-full p-1 rounded-md border min-h-10 h-auto items-center justify-between bg-background hover:bg-background"
+            variant="outline"
           >
             {selectedValues.length > 0 ? (
               <div className="flex justify-between items-center w-full">
