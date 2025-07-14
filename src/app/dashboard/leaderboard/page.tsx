@@ -48,8 +48,11 @@ export default function LeaderboardPage() {
                 <TableRow key={entry.rank} className={cn(entry.isCurrentUser && "bg-accent/50")}>
                   <TableCell className="font-medium text-lg">
                     <div className="flex items-center gap-2">
-                       {entry.rank <= 3 ? <Trophy className={cn("w-5 h-5", getTrophyColor(entry.rank))} /> : <span className="w-5 h-5 text-center">{entry.rank}</span>}
-                       {entry.rank > 3 && <span>{entry.rank}</span>}
+                       {entry.rank <= 3 ? (
+                         <Trophy className={cn("w-5 h-5", getTrophyColor(entry.rank))} />
+                       ) : (
+                         <span className="w-5 h-5 text-center">{entry.rank}</span>
+                       )}
                     </div>
                   </TableCell>
                   <TableCell>
