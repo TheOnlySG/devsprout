@@ -12,6 +12,7 @@ import {
   LayoutDashboard,
   Trophy,
   User,
+  BookCopy,
 } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -35,6 +36,7 @@ const navItems = [
   { href: '/dashboard/my-career', label: 'My Career Path', icon: BookUser },
   { href: '/dashboard/quizzes', label: 'Quizzes', icon: ClipboardList },
   { href: '/dashboard/events', label: 'Events', icon: CalendarCheck2 },
+  { href: '/dashboard/book-swap', label: 'Book Swap', icon: BookCopy },
   { href: '/dashboard/leaderboard', label: 'Leaderboard', icon: Trophy },
   { href: '/dashboard/profile', label: 'Profile', icon: User },
 ];

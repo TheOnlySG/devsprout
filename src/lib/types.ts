@@ -49,3 +49,15 @@ export interface CollegeEvent {
   imageUrl: string;
   imageAiHint: string;
 }
+
+export interface BookListing {
+  id: number;
+  title: string;
+  author: string;
+  price: number | 'Free';
+  sellerName: string;
+  sellerContact: string;
+  imageUrl: string;
+  imageAiHint: string;
+  course?: string;
+}
