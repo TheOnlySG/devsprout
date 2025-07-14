@@ -55,7 +55,7 @@ export default function LeaderboardPage() {
                   <TableCell>
                     <div className="flex items-center gap-3">
                       <Avatar>
-                        <AvatarImage src={`https://placehold.co/40x40.png?text=${entry.name.charAt(0)}`} alt={entry.name} data-ai-hint="student avatar" />
+                        <AvatarImage src={`https://placehold.co/40x40.png`} alt={entry.name} data-ai-hint="student avatar" />
                         <AvatarFallback>{entry.name.charAt(0)}</AvatarFallback>
                       </Avatar>
                       <span className="font-medium">{entry.name}</span>

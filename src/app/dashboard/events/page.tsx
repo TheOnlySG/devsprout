@@ -19,9 +19,8 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { eventsData } from '@/lib/events-data';
 import type { CollegeEvent } from '@/lib/types';
-import { ArrowUp, Calendar, MapPin, User, Check, Users } from 'lucide-react';
+import { ArrowUp, Calendar, MapPin, Check, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Badge } from '@/components/ui/badge';
 
 export default function EventsPage() {
   const { toast } = useToast();
