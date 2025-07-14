@@ -15,6 +15,7 @@ import { careerPathRecommendation } from '@/ai/flows/career-path-recommendation'
 import type { CareerPathRecommendationOutput } from '@/ai/flows/career-path-recommendation';
 import { useCareer } from '@/contexts/career-context';
 import { useRouter } from 'next/navigation';
+import { MultiSelect } from '@/components/ui/multi-select';
 
 const interestsOptions = [
   { value: "I'm not sure yet", description: "Perfectly fine! We'll give you a broad overview to start." },
@@ -29,20 +30,22 @@ const interestsOptions = [
 ];
 
 const skillsOptions = [
-  { value: "I'm a complete beginner", description: "No problem! We'll start with the absolute basics." },
-  { value: 'Python', description: 'A versatile language used in AI, web development, and data science.' },
-  { value: 'JavaScript (React, Node.js)', description: 'The language of the web, for both front-end and back-end.' },
-  { value: 'Java', description: 'Popular for large-scale enterprise applications and Android apps.' },
-  { value: 'C++', description: 'Used for high-performance applications like games and system software.' },
-  { value: 'HTML/CSS', description: 'The fundamental building blocks for all websites.' },
-  { value: 'SQL / Databases', description: 'For managing and querying structured data.' },
-  { value: 'Problem Solving', description: 'Good at logic puzzles and breaking down complex problems.' },
-  { value: 'Git / Version Control', description: 'A tool for tracking changes in code projects.' },
+  { value: "I'm a complete beginner", label: "I'm a complete beginner" },
+  { value: 'Python', label: 'Python' },
+  { value: 'JavaScript (React, Node.js)', label: 'JavaScript (React, Node.js)' },
+  { value: 'Java', label: 'Java' },
+  { value: 'C++', label: 'C++' },
+  { value: 'HTML/CSS', label: 'HTML/CSS' },
+  { value: 'SQL / Databases', label: 'SQL / Databases' },
+  { value: 'Problem Solving', label: 'Problem Solving' },
+  { value: 'Git / Version Control', label: 'Git / Version Control' },
 ];
 
 const formSchema = z.object({
   interests: z.string({ required_error: 'Please select an interest.' }),
-  skills: z.string({ required_error: 'Please select a skill.' }),
+  skills: z.array(z.string()).refine((value) => value.length > 0, {
+    message: 'Please select at least one skill.',
+  }),
 });
 
 export default function CareerPage() {
@@ -53,14 +56,20 @@ export default function CareerPage() {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {},
+    defaultValues: {
+        skills: [],
+    },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     setResult(null);
     try {
-      const recommendationResult = await careerPathRecommendation(values);
+      const formattedValues = {
+        ...values,
+        skills: values.skills.join(', '),
+      };
+      const recommendationResult = await careerPathRecommendation(formattedValues);
       setResult(recommendationResult);
       setRecommendation(recommendationResult);
       toast({
@@ -127,24 +136,13 @@ export default function CareerPage() {
                 name="skills"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-lg">What is your strongest skill?</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a skill" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {skillsOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            <div>
-                                <p className="font-medium">{option.value}</p>
-                                <p className="text-xs text-muted-foreground">{option.description}</p>
-                            </div>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <FormLabel className="text-lg">What are your skills?</FormLabel>
+                     <MultiSelect
+                        options={skillsOptions}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        placeholder="Select your skills..."
+                     />
                     <FormMessage />
                   </FormItem>
                 )}
