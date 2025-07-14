@@ -1,6 +1,7 @@
 # 🚀 DevSprout – Engineer’s Compass
 
 DevSprout is a student-focused web platform designed to support first-year engineering students in exploring and engaging with the developer community. It includes tools for personalized learning, resource sharing, and participation in tech activities.
+<<<<<<< HEAD
 
 ---
 
