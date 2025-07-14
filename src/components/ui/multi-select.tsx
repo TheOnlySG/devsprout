@@ -76,9 +76,11 @@ export const MultiSelect = React.forwardRef<
       React.useState<string[]>(defaultValue);
     const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
 
+    const memoizedOnValueChange = React.useCallback(onValueChange, []);
+
     React.useEffect(() => {
-      onValueChange(selectedValues);
-    }, [selectedValues, onValueChange]);
+      memoizedOnValueChange(selectedValues);
+    }, [selectedValues, memoizedOnValueChange]);
 
     const handleInputKeyDown = (
       event: React.KeyboardEvent<HTMLInputElement>
