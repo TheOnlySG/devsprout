@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { usePathname } from 'next/navigation';
-import { LogOut, Settings, User } from 'lucide-react';
+import { LogOut, PanelLeft, Settings, User } from 'lucide-react';
 import Link from 'next/link';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -34,7 +34,14 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm md:px-6">
-      {isMobile && <SidebarTrigger />}
+      <div className="md:hidden">
+        <SidebarTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <PanelLeft />
+            <span className="sr-only">Toggle Sidebar</span>
+          </Button>
+        </SidebarTrigger>
+      </div>
       <h1 className="hidden text-xl font-semibold md:block font-headline">
         {currentPage?.label || 'DevSprout'}
       </h1>
