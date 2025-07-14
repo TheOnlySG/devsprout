@@ -17,25 +17,27 @@ import { useCareer } from '@/contexts/career-context';
 import { useRouter } from 'next/navigation';
 
 const interestsOptions = [
-  'Web Development',
-  'Mobile App Development',
-  'Artificial Intelligence & Machine Learning',
-  'Game Development',
-  'Cybersecurity',
-  'Data Science & Analytics',
-  'Cloud Computing & DevOps',
-  'UI/UX Design',
+  { value: "I'm not sure yet", description: "Perfectly fine! We'll give you a broad overview to start." },
+  { value: 'Web Development', description: 'Building websites and web applications like this one.' },
+  { value: 'Mobile App Development', description: 'Creating applications for phones and tablets (iOS/Android).' },
+  { value: 'Artificial Intelligence & Machine Learning', description: 'Teaching computers to learn and make decisions.' },
+  { value: 'Game Development', description: 'Creating interactive games for various platforms.' },
+  { value: 'Cybersecurity', description: 'Protecting computer systems and networks from threats.' },
+  { value: 'Data Science & Analytics', description: 'Analyzing data to find trends and insights.' },
+  { value: 'Cloud Computing & DevOps', description: 'Managing and deploying applications on servers like AWS or Google Cloud.' },
+  { value: 'UI/UX Design', description: 'Focusing on the look, feel, and user-friendliness of an app.' },
 ];
 
 const skillsOptions = [
-  'Python',
-  'JavaScript (React, Node.js)',
-  'Java',
-  'C++',
-  'HTML/CSS',
-  'SQL / Databases',
-  'Problem Solving',
-  'Git / Version Control',
+  { value: "I'm a complete beginner", description: "No problem! We'll start with the absolute basics." },
+  { value: 'Python', description: 'A versatile language used in AI, web development, and data science.' },
+  { value: 'JavaScript (React, Node.js)', description: 'The language of the web, for both front-end and back-end.' },
+  { value: 'Java', description: 'Popular for large-scale enterprise applications and Android apps.' },
+  { value: 'C++', description: 'Used for high-performance applications like games and system software.' },
+  { value: 'HTML/CSS', description: 'The fundamental building blocks for all websites.' },
+  { value: 'SQL / Databases', description: 'For managing and querying structured data.' },
+  { value: 'Problem Solving', description: 'Good at logic puzzles and breaking down complex problems.' },
+  { value: 'Git / Version Control', description: 'A tool for tracking changes in code projects.' },
 ];
 
 const formSchema = z.object({
@@ -107,8 +109,11 @@ export default function CareerPage() {
                       </FormControl>
                       <SelectContent>
                         {interestsOptions.map((option) => (
-                          <SelectItem key={option} value={option}>
-                            {option}
+                          <SelectItem key={option.value} value={option.value}>
+                            <div>
+                                <p className="font-medium">{option.value}</p>
+                                <p className="text-xs text-muted-foreground">{option.description}</p>
+                            </div>
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -131,8 +136,11 @@ export default function CareerPage() {
                       </FormControl>
                       <SelectContent>
                         {skillsOptions.map((option) => (
-                          <SelectItem key={option} value={option}>
-                            {option}
+                          <SelectItem key={option.value} value={option.value}>
+                            <div>
+                                <p className="font-medium">{option.value}</p>
+                                <p className="text-xs text-muted-foreground">{option.description}</p>
+                            </div>
                           </SelectItem>
                         ))}
                       </SelectContent>
