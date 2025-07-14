@@ -9,17 +9,38 @@ import { BotMessageSquare, Loader2, BookCopy, Code, Lightbulb } from 'lucide-rea
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { careerPathRecommendation } from '@/ai/flows/career-path-recommendation';
 import type { CareerPathRecommendationOutput } from '@/ai/flows/career-path-recommendation';
 import { useCareer } from '@/contexts/career-context';
 import { useRouter } from 'next/navigation';
 
+const interestsOptions = [
+  'Web Development',
+  'Mobile App Development',
+  'Artificial Intelligence & Machine Learning',
+  'Game Development',
+  'Cybersecurity',
+  'Data Science & Analytics',
+  'Cloud Computing & DevOps',
+  'UI/UX Design',
+];
+
+const skillsOptions = [
+  'Python',
+  'JavaScript (React, Node.js)',
+  'Java',
+  'C++',
+  'HTML/CSS',
+  'SQL / Databases',
+  'Problem Solving',
+  'Git / Version Control',
+];
+
 const formSchema = z.object({
-  interests: z.string().min(10, 'Please tell us a bit more about your interests.'),
-  skills: z.string().min(5, 'Please list at least one skill.'),
+  interests: z.string({ required_error: 'Please select an interest.' }),
+  skills: z.string({ required_error: 'Please select a skill.' }),
 });
 
 export default function CareerPage() {
@@ -30,10 +51,7 @@ export default function CareerPage() {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      interests: '',
-      skills: '',
-    },
+    defaultValues: {},
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -81,13 +99,20 @@ export default function CareerPage() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-lg">What are your interests in Computer Science?</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="e.g., 'I love gaming and want to build my own games', 'I'm fascinated by AI and machine learning', 'I enjoy creating beautiful websites.'"
-                        className="min-h-[100px]"
-                        {...field}
-                      />
-                    </FormControl>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select an interest" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {interestsOptions.map((option) => (
+                          <SelectItem key={option} value={option}>
+                            {option}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -97,10 +122,21 @@ export default function CareerPage() {
                 name="skills"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-lg">What skills do you currently have?</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., 'Basic Python', 'HTML/CSS', 'Problem Solving'" {...field} />
-                    </FormControl>
+                    <FormLabel className="text-lg">What is your strongest skill?</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a skill" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {skillsOptions.map((option) => (
+                          <SelectItem key={option} value={option}>
+                            {option}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
