@@ -20,3 +20,18 @@ export interface UserProfile {
   rank: number;
   avatarUrl: string;
 }
+
+export interface Question {
+  questionText: string;
+  options: string[];
+  correctAnswer: string;
+}
+
+export interface Quiz {
+  beginner: Question[];
+  intermediate: Question[];
+}
+
+export type QuizData = {
+  [key: string]: Quiz;
+};

@@ -1,32 +1,33 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { QuizCategory } from "@/lib/types";
-import { Code, Database, Globe, Cpu, ArrowRight } from "lucide-react";
+import { Code, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const quizCategories: QuizCategory[] = [
   {
-    title: "JavaScript Basics",
-    description: "Test your fundamental knowledge of JavaScript, from variables to functions.",
+    title: "C",
+    description: "Test your knowledge of the foundational C programming language.",
     icon: Code,
-    href: "#"
+    href: "/dashboard/quizzes/c"
   },
   {
-    title: "Web Development",
-    description: "Challenge yourself with questions about HTML, CSS, and the DOM.",
-    icon: Globe,
-    href: "#"
+    title: "C++",
+    description: "Challenge yourself with questions about C++ features and concepts.",
+    icon: Code,
+    href: "/dashboard/quizzes/cpp"
   },
   {
-    title: "Data Structures",
-    description: "How well do you know arrays, linked lists, and trees? Find out now.",
-    icon: Database,
-    href: "#"
+    title: "Python",
+    description: "Assess your skills in Python, from syntax to data structures.",
+    icon: Code,
+    href: "/dashboard/quizzes/python"
   },
   {
-    title: "Algorithms",
-    description: "Assess your problem-solving skills with algorithmic challenges.",
-    icon: Cpu,
-    href: "#"
+    title: "Java",
+    description: "How well do you know Java's object-oriented principles? Find out.",
+    icon: Code,
+    href: "/dashboard/quizzes/java"
   },
 ];
 
@@ -51,9 +52,11 @@ export default function QuizzesPage() {
                </div>
             </CardHeader>
             <CardContent className="mt-auto">
-               <Button className="w-full">
-                  Start Quiz <ArrowRight className="ml-2 h-4 w-4" />
-               </Button>
+                <Button asChild className="w-full">
+                    <Link href={category.href}>
+                        Start Quiz <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                </Button>
             </CardContent>
           </Card>
         ))}
