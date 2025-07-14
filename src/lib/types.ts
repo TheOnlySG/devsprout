@@ -35,3 +35,17 @@ export interface Quiz {
 export type QuizData = {
   [key: string]: Quiz;
 };
+
+export interface CollegeEvent {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  location: string;
+  organizer: string;
+  upvotes: number;
+  isRegistered: boolean;
+  hasUpvoted: boolean;
+  imageUrl: string;
+  imageAiHint: string;
+}

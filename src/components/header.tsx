@@ -21,6 +21,7 @@ const navItems = [
   { href: '/dashboard/career', label: 'AI Career Guide' },
   { href: '/dashboard/my-career', label: 'My Career Path' },
   { href: '/dashboard/quizzes', label: 'Quizzes' },
+  { href: '/dashboard/events', label: 'Events' },
   { href: '/dashboard/leaderboard', label: 'Leaderboard' },
   { href: '/dashboard/profile', label: 'Profile' },
 ];

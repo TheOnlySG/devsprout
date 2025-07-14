@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import {
   BookUser,
   BotMessageSquare,
+  CalendarCheck2,
   ClipboardList,
   Home,
   LayoutDashboard,
@@ -33,6 +34,7 @@ const navItems = [
   { href: '/dashboard/career', label: 'AI Career Guide', icon: BotMessageSquare },
   { href: '/dashboard/my-career', label: 'My Career Path', icon: BookUser },
   { href: '/dashboard/quizzes', label: 'Quizzes', icon: ClipboardList },
+  { href: '/dashboard/events', label: 'Events', icon: CalendarCheck2 },
   { href: '/dashboard/leaderboard', label: 'Leaderboard', icon: Trophy },
   { href: '/dashboard/profile', label: 'Profile', icon: User },
 ];
