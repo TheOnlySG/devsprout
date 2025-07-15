@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -26,6 +27,7 @@ import {
   SidebarMenuButton,
   SidebarProvider,
   SidebarTrigger,
+  useSidebar,
 } from '@/components/ui/sidebar';
 import { Header } from '@/components/header';
 import { Logo } from './icons';
@@ -41,11 +43,12 @@ const navItems = [
   { href: '/dashboard/profile', label: 'Profile', icon: User },
 ];
 
-export function AppLayout({ children }: { children: React.ReactNode }) {
+function MainAppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const { setOpenMobile } = useSidebar();
 
   return (
-    <SidebarProvider>
+    <>
       <Sidebar>
         <SidebarHeader>
           <div className="flex items-center gap-2 p-2">
@@ -63,6 +66,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                   asChild
                   isActive={pathname === item.href}
                   tooltip={item.label}
+                  onClick={() => setOpenMobile(false)}
                 >
                   <Link href={item.href}>
                     <item.icon />
@@ -78,6 +82,15 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <Header />
         <main className="flex-1 p-4 md:p-6 lg:p-8">{children}</main>
       </SidebarInset>
+    </>
+  );
+}
+
+
+export function AppLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <SidebarProvider>
+       <MainAppLayout>{children}</MainAppLayout>
     </SidebarProvider>
   );
 }
