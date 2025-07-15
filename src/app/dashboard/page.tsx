@@ -18,7 +18,7 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <p>
-                DevSprout is your personal guide through the exciting landscape of software development. Explore career paths, test your knowledge, and climb the leaderboard.
+                DevSprout is your personal guide through the exciting landscape of software development. Explore career paths, test your knowledge, and connect with the community.
               </p>
             </CardContent>
           </Card>

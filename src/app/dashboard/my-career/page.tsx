@@ -116,6 +116,8 @@ export default function MyCareerPage() {
         </CardContent>
       </Card>
       
+      <Separator />
+
       <Card>
         <CardHeader>
           <CardTitle className="font-headline">Learning Resources</CardTitle>

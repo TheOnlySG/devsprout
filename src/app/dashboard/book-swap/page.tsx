@@ -38,6 +38,7 @@ export default function BookSwapPage() {
   const { toast } = useToast();
   const [books, setBooks] = useState<BookListing[]>(bookSwapData);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isPostDialogOpen, setIsPostDialogOpen] = useState(false);
 
   const filteredBooks = books.filter(
     (book) =>
@@ -65,6 +66,7 @@ export default function BookSwapPage() {
         title: 'Book Posted!',
         description: `"${newBook.title}" is now listed for swapping.`,
     });
+    setIsPostDialogOpen(false); // Close dialog on success
   };
 
   return (
@@ -78,7 +80,7 @@ export default function BookSwapPage() {
                 Find textbooks from fellow students or list your own to sell.
               </CardDescription>
             </div>
-            <Dialog>
+            <Dialog open={isPostDialogOpen} onOpenChange={setIsPostDialogOpen}>
               <DialogTrigger asChild>
                 <Button>
                   <BookUp className="mr-2" />
@@ -116,9 +118,7 @@ export default function BookSwapPage() {
                     </div>
                   </div>
                   <DialogFooter>
-                    <DialogClose asChild>
-                       <Button type="submit">Post Listing</Button>
-                    </DialogClose>
+                    <Button type="submit">Post Listing</Button>
                   </DialogFooter>
                 </form>
               </DialogContent>

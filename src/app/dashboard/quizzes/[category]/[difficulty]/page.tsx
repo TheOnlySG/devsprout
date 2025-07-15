@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { notFound, useRouter } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -21,7 +21,6 @@ const categoryMap: { [key: string]: string } = {
 };
 
 export default function QuizPage({ params }: { params: { category: string; difficulty: string } }) {
-  const router = useRouter();
   const { category, difficulty } = params;
 
   const quizCategory = quizData[category.toLowerCase()];
